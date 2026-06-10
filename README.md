@@ -3,6 +3,20 @@
 IELTS Speaking practice notes (Markdown) plus a static, browser-only reader app
 that turns them into a shadowing-practice tool with TTS audio.
 
+![Word-by-word karaoke highlight during playback](docs/images/word-highlight.gif)
+
+*Word-by-word karaoke highlight: the active word fills as it is spoken, read words
+return to normal, upcoming words stay muted — synced to real edge-tts word timestamps.*
+
+## Screenshots
+
+| | |
+|---|---|
+| ![Lesson list](docs/images/home.png) | ![Lesson view](docs/images/lesson-part1.png) |
+| **Home** — Part 1 / Part 2 tabs and the lesson list | **Lesson view** — Q&A cards with English + Japanese, per-segment play |
+| ![Word highlight](docs/images/word-highlight.png) | ![Voice and speed controls](docs/images/voice-speed-controls.png) |
+| **Playback** — sentence + active-word highlight | **Controls** — 3 UK voices (Sonia / Ryan / Libby), speed and pause sliders |
+
 ## Layout
 
 ```
@@ -37,7 +51,7 @@ cd reader
 npm run deploy    # build + wrangler pages deploy
 ```
 
-See `reader/docs/deploy-cloudflare-pages.md` for setup details.
+See `reader/docs/cloudflare-deploy/deploy-cloudflare-pages.md` for setup details.
 
 ## Authoring notes
 
