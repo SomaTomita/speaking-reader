@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>IELTS Speaking Reader</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="app-header" role="banner">
+      <div class="app-header__row app-header__row--primary">
+        <button
+          class="sidebar-toggle"
+          type="button"
+          id="sidebar-toggle"
+          aria-expanded="false"
+          aria-controls="sidebar"
+          aria-label="Toggle lesson list"
+          hidden
+        >
+          <span class="sidebar-toggle__icon" aria-hidden="true">☰</span>
+          <span class="sidebar-toggle__label">Lessons</span>
+        </button>
+
+        <h1 class="app-title">IELTS Speaking Reader</h1>
+
+        <button
+          class="icon-button info-button"
+          type="button"
+          id="info-button"
+          aria-label="About this app"
+          title="Keyboard: Space play/pause · S stop · [ / ] speed"
+        >
+          <span aria-hidden="true">?</span>
+        </button>
+      </div>
+
+      <div class="app-header__row app-header__row--controls">
+        <label class="control voice-control">
+          <span class="control__label">Voice</span>
+          <select
+            id="voice-picker"
+            class="voice-picker"
+            aria-label="Select a voice"
+          ></select>
+        </label>
+
+        <label class="control rate-control">
+          <span class="control__label">
+            Speed
+            <output id="rate-readout" class="rate-readout" for="rate-slider"
+              >1.00×</output
+            >
+          </span>
+          <input
+            id="rate-slider"
+            class="rate-slider"
+            type="range"
+            min="0.5"
+            max="1.5"
+            step="0.05"
+            value="1"
+            aria-label="Playback speed"
+          />
+        </label>
+
+        <label class="control pause-control">
+          <span class="control__label">
+            Pause
+            <output id="pause-readout" class="rate-readout" for="pause-slider"
+              >250ms</output
+            >
+          </span>
+          <input
+            id="pause-slider"
+            class="pause-slider"
+            type="range"
+            min="0"
+            max="800"
+            step="50"
+            value="250"
+            aria-label="Inter-sentence pause"
+          />
+        </label>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <aside
+        class="sidebar"
+        id="sidebar"
+        aria-label="Lesson list"
+        data-open="false"
+      >
+        <div
+          class="sidebar__tabs"
+          role="tablist"
+          aria-label="Part selector"
+          id="sidebar-tabs"
+        >
+          <button
+            type="button"
+            class="sidebar__tab"
+            role="tab"
+            aria-selected="true"
+            data-tab="part1"
+            id="tab-part1"
+            aria-controls="sidebar-nav"
+          >
+            Part 1
+          </button>
+          <button
+            type="button"
+            class="sidebar__tab"
+            role="tab"
+            aria-selected="false"
+            data-tab="part2"
+            id="tab-part2"
+            aria-controls="sidebar-nav"
+          >
+            Part 2
+          </button>
+        </div>
+        <nav class="sidebar__nav" id="sidebar-nav" role="tabpanel" aria-label="Lessons"></nav>
+      </aside>
+
+      <main class="main" id="main-content" tabindex="-1">
+        <div class="empty-state" id="empty-state">
+          <h2>Pick a lesson</h2>
+          <p>
+            Select a lesson from the left to begin. Each answer will read
+            aloud, one sentence at a time, with the current sentence gently
+            highlighted.
+          </p>
+        </div>
+
+        <article class="lesson" id="lesson" hidden>
+          <header class="lesson__header">
+            <p class="lesson__file" id="lesson-file"></p>
+            <h2 class="lesson__title" id="lesson-title"></h2>
+            <div class="lesson__actions">
+              <button
+                type="button"
+                class="button button--primary"
+                id="play-lesson"
+              >
+                <span class="button__icon" aria-hidden="true">▶</span>
+                <span class="button__label">Play lesson</span>
+              </button>
+            </div>
+          </header>
+          <div class="segments" id="segments"></div>
+        </article>
+      </main>
+    </div>
+
+    <footer
+      class="player"
+      id="player"
+      hidden
+      aria-label="Now playing controls"
+    >
+      <div class="player__info">
+        <span class="player__label" id="player-label"></span>
+        <span class="player__progress" id="player-progress"></span>
+      </div>
+      <div class="player__controls" role="group" aria-label="Playback">
+        <button
+          type="button"
+          class="icon-button"
+          id="player-prev"
+          aria-label="Previous segment"
+        >
+          <span aria-hidden="true">⏮</span>
+        </button>
+        <button
+          type="button"
+          class="icon-button icon-button--primary"
+          id="player-playpause"
+          aria-label="Pause"
+        >
+          <span aria-hidden="true" id="player-playpause-icon">⏸</span>
+        </button>
+        <button
+          type="button"
+          class="icon-button"
+          id="player-next"
+          aria-label="Next segment"
+        >
+          <span aria-hidden="true">⏭</span>
+        </button>
+        <button
+          type="button"
+          class="icon-button"
+          id="player-stop"
+          aria-label="Stop"
+        >
+          <span aria-hidden="true">■</span>
+        </button>
+      </div>
+    </footer>
+
+    <div class="live-region" aria-live="polite" aria-atomic="true" id="live-region"></div>
+
+    <div class="toast-stack" id="toast-stack" aria-live="assertive"></div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
