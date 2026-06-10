@@ -1,6 +1,9 @@
 # OS
 .DS_Store
 
+# Editor
+.zed/
+
 # Node
 node_modules/
 
