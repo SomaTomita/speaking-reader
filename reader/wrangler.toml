@@ -1,0 +1,8 @@
+# Cloudflare Pages config for the IELTS Speaking Reader (static site).
+# Deploy with:  npm run deploy        (builds, then uploads ./public)
+# First time:   npx wrangler login    (interactive browser auth)
+name = "ielts-speaking-reader"
+compatibility_date = "2026-06-09"
+
+# Pure static output. `wrangler pages deploy` (no dir arg) uses this directory.
+pages_build_output_dir = "public"

@@ -1,0 +1,6 @@
+node_modules/
+.wrangler/
+public/app.js
+public/data.js
+public/audio/
+public/audio-manifest.json
