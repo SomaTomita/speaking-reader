@@ -4,7 +4,10 @@ import { VOICES, DEFAULT_VOICE_KEY, isVoiceKey } from "./voices.ts";
 import { audioBase, mp3Url, cueUrl } from "./audio-paths.ts";
 
 test("VOICES has the three expected keys with the default first", () => {
-  assert.deepEqual(VOICES.map((v) => v.key), ["sonia", "ryan", "libby"]);
+  assert.deepEqual(
+    VOICES.map((v) => v.key),
+    ["sonia", "ryan", "libby"],
+  );
   assert.equal(DEFAULT_VOICE_KEY, "sonia");
   assert.equal(VOICES[0].id, "en-GB-SoniaNeural");
 });

@@ -73,8 +73,7 @@ export function splitSentences(paragraph: string): string[] {
       const afterNext = chars[j + 1];
       const endOfInput = j >= chars.length;
       const isWhitespace = next === " " || next === "\n" || next === "\t";
-      const nextStartsUpper =
-        typeof afterNext === "string" && SENTENCE_START_RE.test(afterNext);
+      const nextStartsUpper = typeof afterNext === "string" && SENTENCE_START_RE.test(afterNext);
 
       if (endOfInput || (isWhitespace && nextStartsUpper)) {
         if (ch === "." && isLikelyAbbreviation(buffer)) {

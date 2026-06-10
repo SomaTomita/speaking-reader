@@ -151,9 +151,14 @@ const JAPANESE_HEADING = /^日本語/;
  * everything from the line after that heading until the next heading (any level)
  * or EOF, stopping early at a horizontal rule. Returns "" when empty.
  */
-const sectionBody = (lines: readonly string[], headings: readonly Heading[], headingIdx: number): string => {
+const sectionBody = (
+  lines: readonly string[],
+  headings: readonly Heading[],
+  headingIdx: number,
+): string => {
   const heading = headings[headingIdx]!;
-  const endLine = headingIdx + 1 < headings.length ? headings[headingIdx + 1]!.lineIndex : lines.length;
+  const endLine =
+    headingIdx + 1 < headings.length ? headings[headingIdx + 1]!.lineIndex : lines.length;
   return normalizeBlock(sliceUntilRule(lines, heading.lineIndex + 1, endLine));
 };
 
